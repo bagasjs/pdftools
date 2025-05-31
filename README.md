@@ -1,6 +1,14 @@
 # My PDFTools
 A simple local PDF tools with Python. It sucks to use Online tool for this.
 
+## Setup
+```console
+$ python -m venv venv
+$ source venv/Scripts/activate
+$ pip install -r requirements.txt
+```
+
+
 ## Available Tools
 | Script      | Status | Description                                |
 |-------------|--------|--------------------------------------------|
