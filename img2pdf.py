@@ -11,6 +11,7 @@ if __name__ == "__main__":
     parser.add_argument("-o", "--output", nargs=1, help="The output file", default="result.pdf")
 
     args = parser.parse_args()
+    output = args.output[0]
 
     if len(args.inputs) < 1:
         print("error: please provide at least 1 valid image inputs")
@@ -28,7 +29,7 @@ if __name__ == "__main__":
             page.insert_image(rect, stream=img_bytes)
 
         if doc.page_count > 0:
-            doc.save(args.output)
-            print(f"Saved PDF to {args.output}")
+            doc.save(output)
+            print(f"Saved PDF to {output}")
         else:
             print("error: no pages created, PDF not saved")
