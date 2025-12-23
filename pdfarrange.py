@@ -146,8 +146,9 @@ if __name__ == "__main__":
             if not DEBUG_MODE:
                 output_doc.save(
                         output_filepath,
-                        garbage=4,     # remove unused objects
-                        deflate=True,  # compress streams
-                        clean=True     # rebuild xref table
+                        garbage=4,        # remove unused objects aggressively
+                        deflate=True,     # compress all streams
+                        clean=True,       # rebuild xref tables
+                        incremental=False,# rewrite whole file
                         )
         read_op_start = ip + 1
