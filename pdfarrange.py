@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import pymupdf as fitz
 
 def parse_selection_ranges(selection: str, page_count: int) -> list[tuple[int, int]]:
@@ -94,6 +95,8 @@ if __name__ == "__main__":
     while len(args) > 0:
         arg, args = shiftargs(args, "Unreachable")
         match arg:
+            case "-help":
+                pass
             case "-debug":
                 DEBUG_MODE = True
             case "-R":
@@ -113,6 +116,21 @@ if __name__ == "__main__":
                 ops.append([ "-o", output_filepath ])
             case "-h":
                 print("pdfarrange.py")
+                print("Usage: pdfarrange -i <pdf> <selections> -o <output>")
+                print("Example: pdfarrange -i records.pdf 2-10 -o records-sliced.pdf")
+                print("This CLI has the same behaviour as something like FFMPEG where the order's matter")
+                print("Selection syntax information:")
+                print("    `pdf arrange -i input.pdf 1    -o output.pdf` Select page 1 only")
+                print("    `pdf arrange -i input.pdf 1-10 -o output.pdf` Select from page 1 to page 10")
+                print("    `pdf arrange -i input.pdf 1-10 -o output.pdf` Select page 1 to the last page")
+                print("    `pdf arrange -i input.pdf 1,3  -o output.pdf` Select page 1 and 3 (range starts from 1)")
+                print("    `pdf arrange -i input.pdf 1,3-10 -o output.pdf` Select page 1 and 3 to 10")
+                print()
+                print("    NOTE: the range in selection syntax starts from 1 not 0 and it's inclusive means if you")
+                print("          do something like 1-3 it will also include page 3")
+                exit(0)
+            case _:
+                print("Run `pdfarrange -h` for more information about pdfarrange")
                 exit(0)
 
     read_op_start = 0
